@@ -199,6 +199,9 @@ function cardClick(event)
       );
 }
 
+/*
+*@description Updates the stars depending on the number of moves made.
+*/
 function updateStarRating()
 {
     if(moves== starRemove && starRemove < 58)
@@ -240,7 +243,6 @@ function checkIfAllCardsMatch()
         }
     }
 }
-
 
 /*
 *@description When user clicks to restart the game.
