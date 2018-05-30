@@ -106,7 +106,10 @@ function addListenersToCardsInDeck()
 *@description List of events triggered after a card is clicked.
 */
 function cardClickWorkflow(event) {
-   
+    updateMoves();
+    cardClick(event);
+    updateStarRating();
+    clicked++;
 }
 
 /*
@@ -193,4 +196,16 @@ function cardClick(event)
         },
         "arg"
       );
+}
+
+function updateStarRating()
+{
+    if(moves== starRemove && starRemove < 58)
+    {
+        const starsContainer = document.getElementById("stars-container");
+        const firstChild = starsContainer.firstElementChild;
+        firstChild.remove();
+        starRemove +=8;
+
+    }
 }
