@@ -12,10 +12,22 @@ let starRemove=32;
 function listOfCards()
 {
     const cards =  [
-    "card fa fa-diamond", "card fa fa-paper-plane-o", "card fa fa-anchor",
-    "card fa fa-bolt", "card fa fa-cube", "card fa fa-anchor", "card fa fa-leaf", "card  fa fa-bicycle",
-    "card fa fa-diamond", "card fa fa-bomb", "card fa fa-leaf", "card fa fa-bomb", "card fa fa-bolt",
-    "card fa fa-bicycle", "card fa fa-paper-plane-o", "card fa fa-cube"
+    "card fa fa-diamond",
+    "card fa fa-paper-plane-o",
+    "card fa fa-anchor",
+    "card fa fa-bolt",
+    "card fa fa-cube",
+    "card fa fa-anchor",
+    "card fa fa-leaf",
+    "card  fa fa-bicycle",
+    "card fa fa-diamond",
+    "card fa fa-bomb",
+    "card fa fa-leaf",
+    "card fa fa-bomb",
+    "card fa fa-bolt",
+    "card fa fa-bicycle",
+    "card fa fa-paper-plane-o",
+    "card fa fa-cube"
     ];
 
     return cards;
@@ -118,8 +130,7 @@ function cardClickWorkflow(event) {
 */
 function updateMoves()
 {
-    if(moves == 0)
-    {
+    if (moves == 0) {
         startTime = performance.now();
     }
     moves++;
@@ -146,31 +157,25 @@ function cardClick(event)
 
     listOfClasses.forEach(
         function(value, key, listObj) {
-          if(value.includes("fa-"))
-          {
-              if(clicked == 1)
-              {
+          if (value.includes("fa-")) {
+              if (clicked == 1) {
                     previousClickedImage = event.target;
                     previousClickedImageCssValue = value;
               }
-              if(clicked == 2)
-              {
-                    if(previousClickedImage !== event.target && value == previousClickedImageCssValue)
-                    {
+              if (clicked == 2) {
+                    if (previousClickedImage !== event.target && value == previousClickedImageCssValue) {
                         listOfClasses.add("match");
                         previousClickedImage.classList.add("match");
                         event.target.removeEventListener('click', cardClickWorkflow, false);
                         previousClickedImage.removeEventListener('click', cardClickWorkflow, false);
                     }
-                    else
-                    {
+                    else {
                         event.target.classList.toggle('no-match');
                         previousClickedImage.classList.toggle('no-match');
                         const lis = document.getElementById("deck-container").getElementsByTagName('li');
 
                         /*Disable click events while the settimeout function is running. */
-                        for (let i=0; i<lis.length; i++)
-                        {
+                        for (let i=0; i<lis.length; i++) {
                             lis[i].style.pointerEvents = 'none';
                         }
                         setTimeout(() => {
@@ -182,8 +187,7 @@ function cardClick(event)
 
                             /*Enable click events*/
                             previousClickedImage.classList.toggle('no-match');
-                            for (let i=0; i<lis.length; i++)
-                            {
+                            for (let i=0; i<lis.length; i++) {
                                 lis[i].style.pointerEvents = 'auto';
                             }
 
@@ -204,8 +208,7 @@ function cardClick(event)
 */
 function updateStarRating()
 {
-    if(moves== starRemove && starRemove < 58)
-    {
+    if (moves== starRemove && starRemove < 58) {
         const starsContainer = document.getElementById("stars-container");
         const firstChild = starsContainer.firstElementChild;
         firstChild.remove();
@@ -220,8 +223,7 @@ function updateStarRating()
 function checkIfAllCardsMatch()
 {
     const listOfMatches = document.getElementsByClassName("match");
-    if(listOfMatches.length == 16)
-    {
+    if (listOfMatches.length == 16) {
         const endTime = performance.now();
         const totalTime = ((endTime - startTime)/ (1000));
         const starsContainer = document.getElementsByClassName("fa-star");
@@ -275,8 +277,7 @@ function createStarRating()
     const starsList = document.getElementsByClassName("fa-star");
     const starsNeeded = 5-starsList.length;
     const documentFragment =  document.createDocumentFragment();
-    for(let i=0;i<starsNeeded;i++)
-    {
+    for (let i=0;i<starsNeeded;i++) {
         const listElement = document.createElement('li');
         listElement.className = "fa fa-star";
         documentFragment.appendChild(listElement);
