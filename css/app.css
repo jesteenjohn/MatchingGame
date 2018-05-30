@@ -108,3 +108,44 @@ h1 {
     cursor: pointer;
 }
 
+.disable{
+    pointer-events: none;
+}
+
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 50%;
+    height: 50%;
+}
+
+.modal-elements {
+    width: 100%;
+    background-color: #f7f4f4;
+    margin: auto;
+    border: 2px solid #000;
+}
+
+.modal-text-content {
+    text-align: center;
+    color: green;
+}
+
+.modal-button {
+    height: 20px;
+    width: 100px;
+    margin: -10px -30px;
+    position: relative;
+    left: 50%;
+    border: 2px solid #777;
+}
+
+.close {
+    float: right;
+    color: #000;
+    font-size: 40px;
+    font-weight: normal;
+    cursor: pointer;
+}
+

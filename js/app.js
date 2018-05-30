@@ -109,6 +109,7 @@ function cardClickWorkflow(event) {
     updateMoves();
     cardClick(event);
     updateStarRating();
+    checkIfAllCardsMatch();
     clicked++;
 }
 
@@ -207,5 +208,35 @@ function updateStarRating()
         firstChild.remove();
         starRemove +=8;
 
+    }
+}
+
+/*
+*@description When all cards match
+*/
+function checkIfAllCardsMatch()
+{
+    const listOfMatches = document.getElementsByClassName("match");
+    if(listOfMatches.length == 16)
+    {
+        const endTime = performance.now();
+        const totalTime = ((endTime - startTime)/ (1000));
+        const starsContainer = document.getElementsByClassName("fa-star");
+        const starRating = starsContainer.length;
+        const modal = document.getElementById('modalDialogWindow');
+        const span = document.getElementsByClassName("close")[0];
+        const modalText = document.getElementsByClassName('modal-text-content')[0];
+        modalText.textContent = "Congratulations.You have won.!! You took " + totalTime.toFixed(2) + " seconds. You have a star rating of " + starRating;
+        modal.style.display = "block";
+        const modalButton  = document.getElementsByClassName("modal-button")[0];
+
+        modalButton.onclick = function(){
+            modal.style.display = "none";
+            restartGame();
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
     }
 }
