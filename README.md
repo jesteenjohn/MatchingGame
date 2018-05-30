@@ -2,19 +2,18 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Summary](#summary)
+* [HowToPlay](#howtoplay)
 * [Contributing](#contributing)
 
-## Instructions
+## Summary
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is a memory game project. The aim of this game is to find matching pair of cards within consecutive clicks. There are 8 matching pair of cards. The game is over once the user is able to reveal all the matching pairs.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## HowToPlay
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Before the game starts all the cards are face down. The user starts the game by clicking a card and showing the clicked card, at this time the timer too starts. If the user is able to click a matching card in the next click then both the cards remain open else both the cards face down. The user has to conitnue revealing all the matching pairs of cards. There is a rating which changes depending on the number of moves the user takes to reveal the cards. Lesser the moves better the rating. The game is over once the user reveals all the matching pairs upon which a dialog box opens up with a game completion message, the time take and the star rating.
 
 ## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).

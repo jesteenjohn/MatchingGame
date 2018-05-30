@@ -160,7 +160,7 @@ function cardClick(event)
                         listOfClasses.add("match");
                         previousClickedImage.classList.add("match");
                         event.target.removeEventListener('click', cardClickWorkflow, false);
-                        previousClickedImage.removeEventListener('click', cardClickWorkflow, false);                       
+                        previousClickedImage.removeEventListener('click', cardClickWorkflow, false);
                     }
                     else
                     {

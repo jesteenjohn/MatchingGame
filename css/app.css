@@ -149,13 +149,17 @@ h1 {
     cursor: pointer;
 }
 
-/* Animation when there is match*/
+/* 
+*Animation when there is match
+*/
 .match {
     animation-name: matchAnimate;
     animation-duration: .5s;
 }
 
-/*Change colors and shake in Y direction*/
+/*
+*Change colors and shake in Y direction
+*/
 @keyframes matchAnimate {
     10% {background: yellow;}
     50% {background: yellowgreen;}
@@ -170,13 +174,17 @@ h1 {
   }
 }
 
-/* Animation when there is no match*/
+/*
+*Animation when there is no match
+*/
 .no-match {
   animation: no-match .5s;
   transform: translateX(0);
 }
 
-/*Shake in X direction*/
+/*
+*Shake in X direction
+*/
 @keyframes no-match {
 
   10%,30%,50%,70%,90% {
