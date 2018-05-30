@@ -108,3 +108,89 @@ function addListenersToCardsInDeck()
 function cardClickWorkflow(event) {
    
 }
+
+/*
+*@description Updates the moves count on each card click.
+*/
+function updateMoves()
+{
+    if(moves == 0)
+    {
+        startTime = performance.now();
+    }
+    moves++;
+    const movesContainer = document.getElementById("moves-container");
+    movesContainer.textContent = moves;
+}
+
+/*
+*@description This is the main workflow that happens when a card is clicked.
+    - It opens and shows the card
+    - If its the first click then saves the state of the card and its css value.
+    - If its the second click
+        - Checks if user clicked on the same card twice, it hides the card.
+        - If the user clicked on a different card
+            - It checks if the fa- classname matches, if so it adds a new class called match to it and also disables it.
+            - If it doesn't match it toggles both the first and second card to hide and temporarily disables other cards to prevent the user from continuously clicking other cards.
+@param {Event} The event object that the target object is listening for.
+*/
+function cardClick(event)
+{
+    event.target.classList.toggle('open');
+    event.target.classList.toggle('show');
+    const listOfClasses = event.target.classList;
+
+    listOfClasses.forEach(
+        function(value, key, listObj) {
+          if(value.includes("fa-"))
+          {
+              if(clicked == 1)
+              {
+                    previousClickedImage = event.target;
+                    previousClickedImageCssValue = value;
+              }
+              if(clicked == 2)
+              {
+                    if(previousClickedImage !== event.target && value == previousClickedImageCssValue)
+                    {
+                        listOfClasses.add("match");
+                        previousClickedImage.classList.add("match");
+                        event.target.removeEventListener('click', cardClickWorkflow, false);
+                        previousClickedImage.removeEventListener('click', cardClickWorkflow, false);                       
+                    }
+                    else
+                    {
+                        event.target.classList.toggle('no-match');
+                        previousClickedImage.classList.toggle('no-match');
+                        const lis = document.getElementById("deck-container").getElementsByTagName('li');
+
+                        /*Disable click events while the settimeout function is running. */
+                        for (let i=0; i<lis.length; i++)
+                        {
+                            lis[i].style.pointerEvents = 'none';
+                        }
+                        setTimeout(() => {
+                            event.target.classList.toggle('open');
+                            event.target.classList.toggle('show');
+                            previousClickedImage.classList.toggle('open');
+                            previousClickedImage.classList.toggle('show');
+                            event.target.classList.toggle('no-match');
+
+                            /*Enable click events*/
+                            previousClickedImage.classList.toggle('no-match');
+                            for (let i=0; i<lis.length; i++)
+                            {
+                                lis[i].style.pointerEvents = 'auto';
+                            }
+
+                        }, 500);
+
+                    }
+                    clicked = 0;
+                    previousClickedImageCssValue = "";
+              }
+          }
+        },
+        "arg"
+      );
+}
