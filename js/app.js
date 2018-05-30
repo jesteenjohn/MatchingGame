@@ -240,3 +240,44 @@ function checkIfAllCardsMatch()
         }
     }
 }
+
+
+/*
+*@description When user clicks to restart the game.
+*/
+function restartGame()
+{
+    clicked = 1;
+    moves = 0;
+    starRemove = 32;
+    startTime = null;
+    previousClickedImage = null;
+    previousClickedImageCssValue = "";
+    const lis = document.getElementById("deck-container").getElementsByTagName('li');
+    for (let i=0; i<lis.length; i++) {
+        lis[i].classList.remove("open");
+        lis[i].classList.remove("show");
+        lis[i].classList.remove("match");
+    }
+    createStarRating();
+    const movesContainer = document.getElementById("moves-container");
+    movesContainer.textContent = moves;
+}
+
+/*
+*@description Creates the star rating section.
+*/
+function createStarRating()
+{
+    const starsContainer = document.getElementById("stars-container");
+    const starsList = document.getElementsByClassName("fa-star");
+    const starsNeeded = 5-starsList.length;
+    const documentFragment =  document.createDocumentFragment();
+    for(let i=0;i<starsNeeded;i++)
+    {
+        const listElement = document.createElement('li');
+        listElement.className = "fa fa-star";
+        documentFragment.appendChild(listElement);
+    }
+   starsContainer.appendChild(documentFragment);
+}
