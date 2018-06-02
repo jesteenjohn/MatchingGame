@@ -159,7 +159,6 @@ h1 {
 
 /*
 *Change colors and shake in Y direction
-https://www.w3schools.com/howto/howto_css_shake_image.asp
 */
 @keyframes matchAnimate {
     10% {background: yellow;}
@@ -196,4 +195,31 @@ https://www.w3schools.com/howto/howto_css_shake_image.asp
     transform: translateX(5px);
   }
 
+}
+
+/*
+*Responsive CSS 
+*/
+@media (min-width: 601px) and (max-width: 1200px) {
+    .deck {
+        width: 460px;
+        height: 280px;
+    }
+
+   .deck .card {
+        height: 80px;
+        width: 80px;
+   }
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+    .deck {
+        width: 260px;
+        min-height: 400px;  
+    }
+
+   .deck .card {
+        height: 40px;
+        width: 40px;
+   }
 }
