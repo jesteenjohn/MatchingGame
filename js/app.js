@@ -5,6 +5,8 @@ let previousClickedImage = null;
 let startTime = null;
 let moves = 0;
 let starRemove=32;
+let timerId;
+let timerCounter = 0;
 /*
  * @description Create a list that holds all of your cards.
  * @returns {array} Array of css classnames for all 16 cards.
@@ -92,7 +94,7 @@ function generateCardDeck()
     const shuffledCards = shuffle(cards);
     let documentFragment =  document.createDocumentFragment();
 
-    shuffledCards.forEach((cardClassNames, index) => {
+    shuffledCards.forEach((cardClassNames) => {
         const listElement = document.createElement('li');
         listElement.className = cardClassNames;
         documentFragment.appendChild(listElement);
@@ -129,9 +131,12 @@ function cardClickWorkflow(event) {
 *@description Updates the moves count on each card click.
 */
 function updateMoves()
-{
-    if (moves == 0) {
-        startTime = performance.now();
+{    
+    if (moves === 0) {        
+        timerId = setInterval(function() {    
+            timerCounter++;   
+            document.getElementById("timer").innerHTML = timerCounter + "s ";       
+        }, 1000);     
     }
     moves++;
     const movesContainer = document.getElementById("moves-container");
@@ -223,15 +228,14 @@ function updateStarRating()
 function checkIfAllCardsMatch()
 {
     const listOfMatches = document.getElementsByClassName("match");
-    if (listOfMatches.length == 16) {
-        const endTime = performance.now();
-        const totalTime = ((endTime - startTime)/ (1000));
+    if (listOfMatches.length == 16) {   
+        clearInterval(timerId);
         const starsContainer = document.getElementsByClassName("fa-star");
         const starRating = starsContainer.length;
         const modal = document.getElementById('modalDialogWindow');
         const span = document.getElementsByClassName("close")[0];
         const modalText = document.getElementsByClassName('modal-text-content')[0];
-        modalText.textContent = "Congratulations.You have won.!! You took " + totalTime.toFixed(2) + " seconds. You have a star rating of " + starRating;
+        modalText.textContent = "Congratulations.You have won.!! You took " + timerCounter + " seconds. You have a star rating of " + starRating;
         modal.style.display = "block";
         const modalButton  = document.getElementsByClassName("modal-button")[0];
 
@@ -250,22 +254,8 @@ function checkIfAllCardsMatch()
 *@description When user clicks to restart the game.
 */
 function restartGame()
-{
-    clicked = 1;
-    moves = 0;
-    starRemove = 32;
-    startTime = null;
-    previousClickedImage = null;
-    previousClickedImageCssValue = "";
-    const lis = document.getElementById("deck-container").getElementsByTagName('li');
-    for (let i=0; i<lis.length; i++) {
-        lis[i].classList.remove("open");
-        lis[i].classList.remove("show");
-        lis[i].classList.remove("match");
-    }
-    createStarRating();
-    const movesContainer = document.getElementById("moves-container");
-    movesContainer.textContent = moves;
+{ 
+    location.reload();
 }
 
 /*
