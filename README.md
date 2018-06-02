@@ -2,9 +2,25 @@
 
 ## Table of Contents
 
+* [Instructions](#instructions)
+* [Dependencies](#dependencies)
 * [Summary](#summary)
 * [HowToPlay](#howtoplay)
 * [Contributing](#contributing)
+
+## Instructions
+
+The memory game can be downloaded through github using the clone or download button, if using git bash use the following command "git clone https://github.com/jesteenjohn/MatchingGame"
+Once the game is downloaded open the index.html file in a browser to start the game.
+
+The game is built to be responsive, hence can be played on a browser, mobile device or any handheld device.
+
+## Dependencies
+
+The game is dependent on the following fonts and styles:
+    "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+    "https://fonts.googleapis.com/css?family=Coda"
+This game is purely built using HTML, CSS and Javascript. 
 
 ## Summary
 

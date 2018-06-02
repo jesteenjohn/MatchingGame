@@ -2,7 +2,6 @@
 let clicked = 1;
 let previousClickedImageCssValue="";
 let previousClickedImage = null;
-let startTime = null;
 let moves = 0;
 let starRemove=32;
 let timerId;
@@ -131,12 +130,12 @@ function cardClickWorkflow(event) {
 *@description Updates the moves count on each card click.
 */
 function updateMoves()
-{    
-    if (moves === 0) {        
-        timerId = setInterval(function() {    
-            timerCounter++;   
-            document.getElementById("timer").innerHTML = timerCounter + "s ";       
-        }, 1000);     
+{
+    if (moves === 0) {
+        timerId = setInterval(function() {
+            timerCounter++;
+            document.getElementById("timer").innerHTML = timerCounter + "s ";
+        }, 1000);
     }
     moves++;
     const movesContainer = document.getElementById("moves-container");
@@ -228,7 +227,7 @@ function updateStarRating()
 function checkIfAllCardsMatch()
 {
     const listOfMatches = document.getElementsByClassName("match");
-    if (listOfMatches.length == 16) {   
+    if (listOfMatches.length == 16) {
         clearInterval(timerId);
         const starsContainer = document.getElementsByClassName("fa-star");
         const starRating = starsContainer.length;
@@ -242,11 +241,11 @@ function checkIfAllCardsMatch()
         modalButton.onclick = function(){
             modal.style.display = "none";
             restartGame();
-        }
+        };
 
         span.onclick = function() {
             modal.style.display = "none";
-        }
+        };
     }
 }
 
@@ -254,23 +253,6 @@ function checkIfAllCardsMatch()
 *@description When user clicks to restart the game.
 */
 function restartGame()
-{ 
-    location.reload();
-}
-
-/*
-*@description Creates the star rating section.
-*/
-function createStarRating()
 {
-    const starsContainer = document.getElementById("stars-container");
-    const starsList = document.getElementsByClassName("fa-star");
-    const starsNeeded = 5-starsList.length;
-    const documentFragment =  document.createDocumentFragment();
-    for (let i=0;i<starsNeeded;i++) {
-        const listElement = document.createElement('li');
-        listElement.className = "fa fa-star";
-        documentFragment.appendChild(listElement);
-    }
-   starsContainer.appendChild(documentFragment);
+    location.reload();
 }
